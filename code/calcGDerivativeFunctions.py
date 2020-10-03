@@ -8,11 +8,11 @@ pd_mesh_type = 'std'
 dtype = "float64"
 
 #Loading Peridynamic Mesh Data
-CRD = np.loadtxt('../uniform_mesh2d_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
-HOR = np.loadtxt('../uniform_horizon2d_{}.txt'.format(pd_mesh_type), dtype=int, delimiter=',')
-XIX = np.loadtxt('../uniform_xi2d_x_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
-XIY = np.loadtxt('../uniform_xi2d_y_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
-VOL = np.loadtxt('../uniform_area2d_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
+CRD = np.loadtxt('../data/uniform_mesh2d_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
+HOR = np.loadtxt('../data/uniform_horizon2d_{}.txt'.format(pd_mesh_type), dtype=int, delimiter=',')
+XIX = np.loadtxt('../data/uniform_xi2d_x_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
+XIY = np.loadtxt('../data/uniform_xi2d_y_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
+VOL = np.loadtxt('../data/uniform_area2d_{}.txt'.format(pd_mesh_type), dtype=float, delimiter=',')
 
 num_node = np.sqrt(CRD.shape[0]).astype('int64')
 num_feature = HOR.shape[1]
@@ -104,21 +104,26 @@ def calcG01G10(num_node, num_feature, horiz):
 
 GF10, GF01, Famil = calcG01G10(num_node, num_feature, horiz)
 
-np.savetxt('GF10.txt', np.array(GF10), fmt='%.6f', delimiter=', ')
-np.savetxt('GF01.txt', np.array(GF01), fmt='%.6f', delimiter=', ')
-np.savetxt('Family.txt', np.array(Famil), fmt='%6d', delimiter=', ')
+path = '../data';
+if os.path.isfile(path) == False:
+    os.mkdir(path)
+
+
+np.savetxt('../data/GF10.txt', np.array(GF10), fmt='%.6f', delimiter=', ')
+np.savetxt('../data/GF01.txt', np.array(GF01), fmt='%.6f', delimiter=', ')
+np.savetxt('../data/Family.txt', np.array(Famil), fmt='%6d', delimiter=', ')
 
 
 #a = input('').split(" ")[0]
 #I must fist start by loading an image frame
-frame = cv2.imread('../frame0.jpg',0)
+#frame = cv2.imread('../frame0.jpg',0)
 #Finding image dimensions so we can calculate total number of original nodes which should not change
-height, width = frame.shape
+#height, width = frame.shape
 
 
-cv2.imshow('Image', frame)
+#cv2.imshow('Image', frame)
 
 
-cv2.waitKey(0)
+#cv2.waitKey(0)
 
 

@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import math as mt
 from scipy import spatial, integrate
@@ -70,8 +71,12 @@ for I, crdI in enumerate(CRD):
 
 area = np.ones_like(xx) * (x.max()-x.min())/(num_node_x-1) * (y.max()-y.min())/(num_node_y-1)
 
-np.savetxt('uniform_horizon2d_std.txt', np.array(pts)[ids, :], fmt='%6d', delimiter=', ')
-np.savetxt('uniform_xi2d_x_std.txt', np.array(exi)[ids, :, 0], fmt='%.6f', delimiter=',')
-np.savetxt('uniform_xi2d_y_std.txt', np.array(exi)[ids, :, 1], fmt='%.6f', delimiter=',')
-np.savetxt('uniform_mesh2d_std.txt', CRD, fmt='%.6f', delimiter=',')
-np.savetxt('uniform_area2d_std.txt', area.reshape(-1, 1), fmt='%.6f', delimiter=',')
+path = '../data';
+if os.path.isfile(path) == False:
+    os.mkdir(path)
+
+np.savetxt('../data/uniform_horizon2d_std.txt', np.array(pts)[ids, :], fmt='%6d', delimiter=', ')
+np.savetxt('../data/uniform_xi2d_x_std.txt', np.array(exi)[ids, :, 0], fmt='%.6f', delimiter=',')
+np.savetxt('../data/uniform_xi2d_y_std.txt', np.array(exi)[ids, :, 1], fmt='%.6f', delimiter=',')
+np.savetxt('../data/uniform_mesh2d_std.txt', CRD, fmt='%.6f', delimiter=',')
+np.savetxt('../data/uniform_area2d_std.txt', area.reshape(-1, 1), fmt='%.6f', delimiter=',')
