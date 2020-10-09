@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
@@ -104,9 +105,9 @@ def calcG01G10(num_node, num_feature, horiz):
 
 GF10, GF01, Famil = calcG01G10(num_node, num_feature, horiz)
 
-path = '../data';
-if os.path.isfile(path) == False:
-    os.mkdir(path)
+#path = '../data/';
+#if os.path.isfile(path) == False:
+#    os.mkdir(path)
 
 
 np.savetxt('../data/GF10.txt', np.array(GF10), fmt='%.6f', delimiter=', ')

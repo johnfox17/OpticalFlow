@@ -71,9 +71,9 @@ for I, crdI in enumerate(CRD):
 
 area = np.ones_like(xx) * (x.max()-x.min())/(num_node_x-1) * (y.max()-y.min())/(num_node_y-1)
 
-path = '../data';
-if os.path.isfile(path) == False:
-    os.mkdir(path)
+#path = '../data';
+#if os.path.isfile(path) == False:
+#    os.mkdir(path)
 
 np.savetxt('../data/uniform_horizon2d_std.txt', np.array(pts)[ids, :], fmt='%6d', delimiter=', ')
 np.savetxt('../data/uniform_xi2d_x_std.txt', np.array(exi)[ids, :, 0], fmt='%.6f', delimiter=',')
